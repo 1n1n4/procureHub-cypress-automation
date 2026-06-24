@@ -1,0 +1,332 @@
+```text
+HIGH-PROBABILITY SENIOR FULL STACK QA HACKERRANK QUESTIONS
+==========================================================
+
+1. CYPRESS ASYNC EXECUTION
+--------------------------------------------------
+let text = 'old';
+
+cy.get('.title').then(($el) => {
+  text = $el.text();
+});
+
+expect(text).to.not.equal('old');
+
+Question:
+Will this pass or fail?
+
+Answer:
+FAIL
+
+Reason:
+Cypress commands are queued. expect() runs before .then() executes.
+
+
+2. JAVASCRIPT EVENT LOOP
+--------------------------------------------------
+console.log(1);
+
+setTimeout(() => console.log(2), 0);
+
+Promise.resolve().then(() => console.log(3));
+
+console.log(4);
+
+Output?
+
+Answer:
+1
+4
+3
+2
+
+
+3. HTTP METHODS
+--------------------------------------------------
+Which statement is correct?
+
+A. POST is idempotent
+B. PATCH completely replaces a resource
+C. PUT is idempotent
+D. DELETE creates a resource
+
+Answer:
+C
+
+
+4. AUTHENTICATION VS AUTHORIZATION
+--------------------------------------------------
+A user sends a valid JWT but lacks access rights.
+
+Expected response?
+
+A. 200
+B. 401
+C. 403
+D. 500
+
+Answer:
+403 Forbidden
+
+
+5. API STATUS CODES
+--------------------------------------------------
+Match the code:
+
+200 = ?
+201 = ?
+400 = ?
+401 = ?
+403 = ?
+404 = ?
+409 = ?
+500 = ?
+503 = ?
+
+Answers:
+200 OK
+201 Created
+400 Bad Request
+401 Unauthorized
+403 Forbidden
+404 Not Found
+409 Conflict
+500 Internal Server Error
+503 Service Unavailable
+
+
+6. SQL JOINS
+--------------------------------------------------
+Which join returns all rows from the left table
+even when no match exists on the right?
+
+A. INNER JOIN
+B. LEFT JOIN
+C. RIGHT JOIN
+D. CROSS JOIN
+
+Answer:
+LEFT JOIN
+
+
+7. SQL WINDOW FUNCTIONS
+--------------------------------------------------
+Difference between:
+
+ROW_NUMBER()
+RANK()
+DENSE_RANK()
+
+Answer:
+
+ROW_NUMBER()
+1,2,3,4
+
+RANK()
+1,2,2,4
+
+DENSE_RANK()
+1,2,2,3
+
+
+8. STORAGE MECHANISMS
+--------------------------------------------------
+Which survives browser restart?
+
+A. sessionStorage
+B. Session Cookie
+C. localStorage
+D. None
+
+Answer:
+localStorage
+
+
+9. JAVASCRIPT ARRAYS
+--------------------------------------------------
+Most efficient method to determine if at least
+one element matches a condition?
+
+A. map()
+B. filter()
+C. reduce()
+D. some()
+
+Answer:
+some()
+
+
+10. CYPRESS RETRY LOGIC
+--------------------------------------------------
+Which retries automatically?
+
+A. expect()
+B. assert()
+C. cy.get().should()
+D. console.log()
+
+Answer:
+cy.get().should()
+
+
+11. CYPRESS INTERCEPT
+--------------------------------------------------
+cy.intercept('GET', '/users').as('users');
+
+cy.visit('/dashboard');
+
+Before assertions, what should be added?
+
+A. cy.wait(5000)
+B. cy.reload()
+C. cy.wait('@users')
+D. cy.pause()
+
+Answer:
+cy.wait('@users')
+
+
+12. FIX THE FLAKY TEST
+--------------------------------------------------
+Bad:
+
+cy.wait(5000);
+
+Good:
+
+cy.wait('@getUsers');
+
+Reason:
+Network-aware synchronization.
+
+
+13. PUT VS PATCH
+--------------------------------------------------
+PUT:
+Complete resource replacement.
+
+PATCH:
+Partial resource update.
+
+Common MCQ:
+Which updates only changed fields?
+
+Answer:
+PATCH
+
+
+14. CYPRESS ALIASES
+--------------------------------------------------
+cy.get('.row').as('rows');
+
+Retrieve later:
+
+cy.get('@rows');
+
+
+15. FIXTURES
+--------------------------------------------------
+cy.fixture('users.json').then((data) => {
+   ...
+});
+
+Purpose:
+External test data management.
+
+
+16. TEST PYRAMID
+--------------------------------------------------
+Fastest + cheapest:
+
+Unit Tests
+
+Then:
+
+Integration Tests
+
+Then:
+
+API Tests
+
+Then:
+
+E2E Tests
+
+
+17. RISK-BASED TESTING
+--------------------------------------------------
+Prioritize testing:
+
+1. Payment Processing
+2. Authentication
+3. Checkout
+
+Before:
+
+4. Profile Image Upload
+5. UI Themes
+
+
+18. SHADOW DOM
+--------------------------------------------------
+Element not found due to encapsulation.
+
+Solution:
+
+cy.get('my-component')
+  .shadow()
+  .find('button');
+
+
+19. CYPRESS ASSIGNMENT PATTERN
+--------------------------------------------------
+Expected Skills:
+
+- cy.visit()
+- cy.get()
+- cy.contains()
+- cy.intercept()
+- cy.wait()
+- .should()
+
+Example:
+
+cy.intercept('POST', '/api/login').as('login');
+
+cy.visit('/login');
+
+cy.get('[data-testid="email"]')
+  .type('test@test.com');
+
+cy.get('[data-testid="password"]')
+  .type('Password123');
+
+cy.get('[data-testid="submit"]')
+  .click();
+
+cy.wait('@login');
+
+cy.url()
+  .should('include', '/dashboard');
+
+
+20. TOPICS MOST LIKELY TO APPEAR
+--------------------------------------------------
+★★★★★ Cypress async execution
+★★★★★ cy.intercept()
+★★★★★ cy.wait('@alias')
+★★★★★ Event Loop
+★★★★★ 401 vs 403
+★★★★★ PUT vs PATCH
+★★★★★ SQL JOINS
+★★★★★ API Status Codes
+
+★★★★☆ Fixtures
+★★★★☆ Aliases
+★★★★☆ localStorage vs sessionStorage
+★★★★☆ Flaky Test Debugging
+
+★★★☆☆ Shadow DOM
+★★★☆☆ OAuth Internals
+★★★☆☆ Contract Testing Theory
+```
