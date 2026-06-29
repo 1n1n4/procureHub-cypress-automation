@@ -6,5 +6,11 @@
 //   cy.url().should('include', '#dashboard')
 // })
 
+Cypress.Commands.add('login', ()=>{
+    cy.visit('/#login');
+    cy.get('[data-cy="login-email"]').type(Cypress.env('username'));
+    cy.get('[data-cy="login-password"]').type(Cypress.env('password'));
+    cy.get('[data-cy="login-submit"]').click();
+})
 
 
